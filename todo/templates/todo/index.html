@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Todo List</title>
+
+    {% comment %} Loading css file, and importing jQuery CDN {% endcomment %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'todo/style.css' %}">
+    <script src="{% static 'todo/functions.js'%}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <form method="post" id="todoForm">
+            <div class="formStyle">
+                {% csrf_token %}
+                <input type="text" required="" name="title" id="title" maxlength="250" autofocus="">
+                <input type="date" name="date" id="dueDate">
+                <button class="add" onclick="addTask()" value="Add" type="submit">Add</button>
+            </div>
+ 
+            {% if todos %}  
+                {% for todo in todos %}
+                    {{todo.title}}</br> {{todo.due_date}}</br>
+                    <button type="submit" formnovalidate="" class="edit" onclick="editTask()" value="Edit" type="submit">Edit</button>
+                    <button type="submit" formnovalidate="" class="delete" onclick="deleteTask()" value="{{todo.id}}" type="submit">Delete</button>
+                    </button><br><br>
+                {% endfor %}
+            {% endif %}
+        </form>
+        <script> document.querySelector("#dueDate").valueAsDate = new Date(); </script>
+    </body>
+</html>
