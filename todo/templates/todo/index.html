@@ -6,27 +6,39 @@
     {% comment %} Loading css file, and importing jQuery CDN {% endcomment %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'todo/style.css' %}">
-    <script src="{% static 'todo/functions.js'%}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
+        <div class="body">
         <form method="post" id="todoForm">
             <div class="formStyle">
                 {% csrf_token %}
-                <input type="text" required="" name="title" id="title" maxlength="250" autofocus="">
+                <input type="text" required="" name="title" id="title" maxlength="250">
                 <input type="date" name="date" id="dueDate">
-                <button class="add" onclick="addTask()" value="Add" type="submit">Add</button>
+                <button class="add" class="add" value="Add" type="submit">Add</button>
+                <br><span class="message"></span><span class="message2"></span>
             </div>
- 
-            {% if todos %}  
-                {% for todo in todos %}
-                    {{todo.title}}</br> {{todo.due_date}}</br>
-                    <button type="submit" formnovalidate="" class="edit" onclick="editTask()" value="Edit" type="submit">Edit</button>
-                    <button type="submit" formnovalidate="" class="delete" onclick="deleteTask()" value="{{todo.id}}" type="submit">Delete</button>
-                    </button><br><br>
-                {% endfor %}
-            {% endif %}
+            <div class="table">
+                <table>
+                    <tr class="tableHead">
+                        <th>Task</th>
+                        <th>Due Date</th>
+                    </tr>
+                    {% for todo in todos %}
+                    <tr class="tableBody">
+                        <td>{{todo.title}}</td>
+                        <td class="date">{{todo.due_date}}</td>
+                        <td class="btns">
+                        <button type="submit" data-id="{{todo.id}}" formnovalidate="" class="edit">Edit</button>
+                        <button type="button" data-id="{{todo.id}}" formnovalidate="" class="delete" >Complete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div> 
         </form>
+        <div>
         <script> document.querySelector("#dueDate").valueAsDate = new Date(); </script>
+        <script src="{% static 'todo/functions.js'%}"></script>
     </body>
 </html>

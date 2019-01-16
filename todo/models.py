@@ -9,7 +9,7 @@ class Todo(models.Model):
     due_date = models.DateField(default=timezone.now().strftime("%Y-%m-%d"))
 
     class Meta:
-        ordering = ["-due_date"]
+        ordering = ["due_date"]
 
     def __str__(self):
         return self.title

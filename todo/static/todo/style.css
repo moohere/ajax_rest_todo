@@ -1,24 +1,49 @@
-ul {
-    list-style: none;
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    
+  }
+
+.btns {
+    width: 20%;
 }
-li {
-    border: 1px solid #dddddd;
-    text-align: left;
+  
+.date {
+    width: 20%;
+    text-align: center;
+}
+td, th {
+    border: 1px solid #5f93e2;
+    text-align: center;
     padding: 5px;
 }
 
-li:nth-child(odd) {
-    background: azure;
+.tableBody:nth-child(odd) {
+    background: rgb(186, 215, 231);
+}
+
+.body {
+    width: 1000px;
+}
+
+.tableHead {
+    background: rgb(148, 201, 230);
 }
 
 .formStyle {
-    padding: 30px 10px 30px 10px;
+    padding: 30px 0px 30px 300px;
+    background-color: rgb(218, 232, 240);
 }
 
-.editDue {
-    font-weight: bold;
+.table {
+    background-color: rgb(218, 232, 240);
+    padding: 0px 0px 30px 180px;
 }
-/* 
-.key {
-    visibility: hidden;
-} */
+
+.message{
+    color: green;
+}
+
+.message2{
+    color: red;
+}
